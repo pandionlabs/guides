@@ -11,9 +11,10 @@ This document will guide to make changes to your code following best practices, 
 1. Install IDE
 2. Git & Github
 3. First time setup
-4. Make the a change
-5. Publish the change
-6. Additional resources
+4. What's an R package?
+5. Make the a change
+6. Publish the change
+7. Additional resources
 
 After following this document you will be a pro in doing R development using the latest best practices.
 
@@ -187,7 +188,7 @@ go on `File -> New Project -> Existing Directory` and select the folder you clon
 ## Install dependencies
 
 ::: {.callout-tip collapse="true"}
-### No session in Positron
+## No session in Positron
 
 if in positron you don't see any session, press `Ctrl + Shift + P` and search for `R: Select Interpreter` to set your R interpreter.
 Then it should start a new session.
@@ -195,7 +196,7 @@ Then it should start a new session.
 
 Go in the `console` on the top section (this is your friend are you will run a lot of your code there) and if everything worked you should see a prompt like this:
 
-```
+```bash
 Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
@@ -211,7 +212,7 @@ renv::restore()
 
 this will install all of your dependencies, it may take a few minutes.
 
-# 4. Make a change
+# 4. What's an R Package
 
 You can now start developing your project and start making changes.
 
@@ -221,40 +222,57 @@ The code you will be working on is an R package. R packages follow a specific st
 
 Here is the typical structure you will see:
 
-```
+```bash
 .
-├── DESCRIPTION         # Metadata about the package like name, version, authors
-├── LICENSE             # License information
-├── NAMESPACE           # Controls which functions are exposed in the package API
-├── README.md           # Basic info and instructions, good for quick reference
+├── README.md          # Basic info about the package the research results (automatically generated)
+├── README.Rmd         # Basic info about the package the research results (editable)
 ├── R                  # This folder contains the main R code files defining functions
-│   ├── data.R          
-│   ├── functions.R      
-│   └── utils.R        
-├── data                 # Data files included in the package (e.g. data.csv)
-│   └── data.csv        
-├── man                  # Documentation files auto-generated for package functions
-│   ├── data.Rd         
-│   └── functions.Rd    
-└── tests                # Automated tests to ensure your code works as expected
+│   ├── data.R
+│   ├── functions.R
+│   └── utils.R
+├── data               # Data files included in the package processed by R
+│   └── data.rds
+├── data-raw           # Original data that are then processed into the data folder
+│   └── data.csv
+├── man                # Documentation files auto-generated for package functions
+│   ├── data.Rd
+│   └── functions.Rd
+├── vignettes
+│   ├── articles       # Documentation that will go on the website
+│   │   └── analysis1.Rmd      # Documentation that will go on the website
+└── tests              # Automated tests to ensure your code works as expected
     ├── test-data.R
     └── test-functions.R
 ```
 
-### What you will mainly work with
+There are also other files and folders that you can ignore them (but don't delete them!)
 
-- **R folder:** This is where you add or modify R scripts containing functions or logic for the package.
-- **tests folder:** Here you can add or update unit tests after making changes, to verify your code behaves correctly.
-- **DESCRIPTION and NAMESPACE:** Usually, you don't need to change these unless adding new dependencies or exporting new functions.
-- **man folder:** Documentation files are often generated automatically when documented properly in the R code itself.
-- **data folder:** Contains any example or internal datasets used by the package.
+Don't worry if now a lot of those folders don't make sense now, we'll go through the important ones in the next sections.
 
-Understanding this structure helps you focus on editing the right files during your development and testing processes.
+## Functions
 
+This is where most of the code lives, each individual function (or closely related functions) are in the file `R/<function_name>.R`. By organizing the code in this way we can split into components that are understandable and reusable.
+
+An example of functions can be:
+
+- `clean_data` which cleans the data to prepare for analysis
+- `create_models` which creates all the statistical models needed for the analysis
+
+If you want to add or change features in your core package functionality this is the place you will need to touch.
+
+
+
+[Learn more about functions in R](https://r4ds.hadley.nz/functions.html)
+
+## Notebooks
+
+In the package there are `.Rmd` files in the `Readme.Rmd` and in the `vignettes/articles` folder. Those are R Markdown notebooks, which are a special type of files that combine
+
+## Tests
 
 **Every time**
 
-# Additional resources
+# 7. Additional resources
 
 - [https://happygitwithr.com](https://happygitwithr.com)
 - [https://peerj.com/preprints/3159.pdf](https://peerj.com/preprints/3159.pdf)
