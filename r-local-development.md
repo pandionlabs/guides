@@ -10,7 +10,7 @@ This document will guide to make changes to your code following best practices, 
 
 1. Install IDE
 2. Git & Github
-3. Install dependencies
+3. First time setup
 4. Make the a change
 5. Publish the change
 6. Additional resources
@@ -37,7 +37,7 @@ Both of those editors are maintained by [Posit](https://posit.co/) (formerly RSt
 - you need to first install rig, follow the [instructions](https://github.com/r-lib/rig?tab=readme-ov-file#%EF%B8%8F-installing-rig-) for your operating system
    - on windows if you are using the installer method, windows doesn't recognise the installer as safe. Rig can be totally trusted, so when you run it you should click on "more info" and then "run anyway"
 
-::: {.panel-tabset}
+::: {.panel-tabset group="ide"}
 
 ## Positron
 
@@ -125,42 +125,32 @@ I guess he will make you install github desktop as well
 
 :::
 
-### Get your code
+## Get your code
 
 Now you need to clone (gitspeech for download) your repository (remember gitspeech for folder) into your computer. Is important you use a new folder so that you have everything properly configured.
 
-Go to Github Desktop and search for your repository name and then click on clone.
+ 1. Open Github Desktop
+ 2. `File -> Clone Repository`
+ 3. search for your repository name
+ 4. select the folder in your computer where you want to download your repository
+ 5. click clone
 
-## 3. First time setup
+![github desktop clone example](assets/github_desktop_clone.png)
+
+# 3. First time setup
 
 Congratulations! You have made it thought the difficult part, now everything will take place inside your IDE.
 Talking of which open your favorite IDE (either Positron or RStudio).
 
 For the first time you setup your package you need to install the dependencies.
 
-Go in the `console` on the top section (this is your friend are you will run a lot of your code there) and if everything worked you should see a prompt like this:
 
 
-```
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
->
-```
-
-::: {.callout-tip collapse="true"}
-## No session in Positron
-
-if in positron you don't see any session, press `Ctrl + Shift + P` and search for `R: Select Interpreter` to set your R interpreter.
-Then it should start a new session.
-:::
-
-### Familiarize yourself with the IDE
+## Familiarize yourself with the IDE
 
 This is time to take a break and learn the basics of your IDE, here are our suggestions of what you have to know
 
-::: {.panel-tabset}
+::: {.panel-tabset group="ide"}
 
 ### Positron
 
@@ -174,8 +164,95 @@ This is time to take a break and learn the basics of your IDE, here are our sugg
 
 ### RStudio
 
+- layout [https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html)
+
 :::
 
+## Open project
+
+You want to open the folder that you cloned using github desktop in the IDE
+
+::: {.panel-tabset group="ide"}
+
+### Positron
+
+press `Ctrl + Shift + P` and search for `File: Open Folder` and select the folder you cloned
+
+### RStudio
+
+go on `File -> New Project -> Existing Directory` and select the folder you cloned
+
+:::
+
+## Install dependencies
+
+::: {.callout-tip collapse="true"}
+### No session in Positron
+
+if in positron you don't see any session, press `Ctrl + Shift + P` and search for `R: Select Interpreter` to set your R interpreter.
+Then it should start a new session.
+:::
+
+Go in the `console` on the top section (this is your friend are you will run a lot of your code there) and if everything worked you should see a prompt like this:
+
+```
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>
+```
+
+then run
+
+```r
+renv::restore()
+```
+
+this will install all of your dependencies, it may take a few minutes.
+
+# 4. Make a change
+
+You can now start developing your project and start making changes.
+
+## Code Structure
+
+The code you will be working on is an R package. R packages follow a specific structure and conventions that help organize your code, data, documentation, and tests neatly.
+
+Here is the typical structure you will see:
+
+```
+.
+├── DESCRIPTION         # Metadata about the package like name, version, authors
+├── LICENSE             # License information
+├── NAMESPACE           # Controls which functions are exposed in the package API
+├── README.md           # Basic info and instructions, good for quick reference
+├── R                  # This folder contains the main R code files defining functions
+│   ├── data.R          
+│   ├── functions.R      
+│   └── utils.R        
+├── data                 # Data files included in the package (e.g. data.csv)
+│   └── data.csv        
+├── man                  # Documentation files auto-generated for package functions
+│   ├── data.Rd         
+│   └── functions.Rd    
+└── tests                # Automated tests to ensure your code works as expected
+    ├── test-data.R
+    └── test-functions.R
+```
+
+### What you will mainly work with
+
+- **R folder:** This is where you add or modify R scripts containing functions or logic for the package.
+- **tests folder:** Here you can add or update unit tests after making changes, to verify your code behaves correctly.
+- **DESCRIPTION and NAMESPACE:** Usually, you don't need to change these unless adding new dependencies or exporting new functions.
+- **man folder:** Documentation files are often generated automatically when documented properly in the R code itself.
+- **data folder:** Contains any example or internal datasets used by the package.
+
+Understanding this structure helps you focus on editing the right files during your development and testing processes.
+
+
+**Every time**
 
 # Additional resources
 
