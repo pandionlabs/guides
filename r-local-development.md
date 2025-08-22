@@ -1,12 +1,12 @@
 ---
 title: "Local development R package"
-Author: ["Simone Massaro", "Sam Herniman"]
+Author: ["Simone Massaro", "Sam Herniman", "Anna Dodd]
 Date: 05 August 2025
 ---
 
 # Outline
 
-This document will guide to make changes to your code following best practices, after your code has been updated by Pandion Labs.
+This document will guide you to make changes to your code following our recommended practices, after your code has been updated by Pandion Labs. This document will attempt to get you started as quickly as possible. We will provide you with additional resources along the way so that you can learn more if you are interested.
 
 1. Install IDE
 2. Git & Github
@@ -17,6 +17,8 @@ This document will guide to make changes to your code following best practices, 
 7. Additional resources
 
 After following this document you will be a pro in doing R development using the latest best practices.
+
+The first 3 sections deal with setting up R, an IDE (RStudio or Positron), and git/github. If you have previously installed these, you may be able to skip these sections. This is a guide after all, no need to teach you things you already know.
 
 ## Why
 
@@ -68,7 +70,7 @@ It takes a bit to setup but it is going to be worth it.
 
 ### First concepts
 
-Developers have a weird culture and they like to use weird a cryptic word, but thigs are not that hard. Here you have a reference to translate gitspeech into normal speech:
+Developers have a weird culture and they like to use weird a cryptic word, but things are not that hard. Here you have a reference to translate gitspeech into normal speech:
 
 - **Repository** this is a "folder" where your store code
 - **Git vs Github** git is the program that runs on your computer and helps you keep track of your code versions, github is a website where you can store your code and collaborate with others.
@@ -77,7 +79,7 @@ Developers have a weird culture and they like to use weird a cryptic word, but t
 
 - Go to [https://github.com/join](https://github.com/join)
 - Create an account and follow the instructions. Here are some [tips on how to choose your username](https://happygitwithr.com/github-acct#username-advice)
-- **send username to Pandion Labs**, so that you can be added to your repository
+- **send your username to Pandion Labs**, so that you can be added to your repository
 
 ## Install Git on your computer
 
@@ -120,9 +122,8 @@ For additional details see the [official documentation](https://github.com/git-e
 
 ### MacOS
 
-Talk with Sam, he really likes to be contacted on WhatsApp
-
-I guess he will make you install github desktop as well
+- install [Github Desktop](https://desktop.github.com/)
+- login with your github account
 
 :::
 
@@ -190,11 +191,11 @@ go on `File -> New Project -> Existing Directory` and select the folder you clon
 ::: {.callout-tip collapse="true"}
 ## No session in Positron
 
-if in positron you don't see any session, press `Ctrl + Shift + P` and search for `R: Select Interpreter` to set your R interpreter.
+If in positron you don't see any session, press `Ctrl + Shift + P` and search for `R: Select Interpreter` to set your R interpreter.
 Then it should start a new session.
 :::
 
-Go in the `console` on the top section (this is your friend are you will run a lot of your code there) and if everything worked you should see a prompt like this:
+Go in the `console` on the top section (this is your friend - you will run a lot of your code there) and if everything worked you should see a prompt like this:
 
 ```bash
 Type 'demo()' for some demos, 'help()' for on-line help, or
@@ -210,11 +211,11 @@ then run
 renv::restore()
 ```
 
-this will install all of your dependencies, it may take a few minutes.
+This will install all of your dependencies, it may take a few minutes.
 
 # 4. What's an R Package
 
-You can now start developing your project and start making changes.
+You can now start developing your project and start making changes. We recommend [this tutorial](https://r-pkgs.org/whole-game.html) in the _R Packages Book_ as an excellent way to learn everything you will need to know to build an R package.
 
 ## Code Structure
 
@@ -224,8 +225,8 @@ Here is the typical structure you will see:
 
 ```bash
 .
-├── README.md          # Basic info about the package the research results (automatically generated)
-├── README.Rmd         # Basic info about the package the research results (editable)
+├── README.md          # Basic info about the package (automatically generated - don't edit this file)
+├── README.Rmd         # Basic info about the package (editable)
 ├── R                  # This folder contains the main R code files defining functions
 │   ├── data.R
 │   ├── functions.R
