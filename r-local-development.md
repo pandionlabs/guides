@@ -1,6 +1,6 @@
 ---
 title: "Local development R package"
-Author: ["Simone Massaro", "Sam Herniman", "Anna Dodd]
+Author: ["Simone Massaro", "Sam Herniman", "Anna Dodd"]
 Date: 05 August 2025
 ---
 
